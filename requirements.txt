@@ -1,0 +1,43 @@
+# === CORE ML STACK ===
+transformers==4.36.0
+torch==2.1.0
+accelerate==0.25.0
+bitsandbytes==0.41.0
+sentence-transformers==2.2.2
+sentencepiece==0.1.99
+
+# === VECTOR DATABASE ===
+faiss-cpu==1.7.4
+# faiss-gpu==1.7.4  # раскомментировать если есть GPU
+
+# === RAG FRAMEWORK ===
+langchain==0.1.0
+langchain-community==0.0.10
+
+# === WEB FRAMEWORK ===
+flask==3.0.0
+flask-cors==4.0.0
+
+# === DATA PROCESSING ===
+beautifulsoup4==4.12.2
+lxml==4.9.3
+pypdf==3.17.0
+python-docx==1.1.0
+requests==2.31.0
+
+# === MEDICAL DATABASES ===
+biopython==1.83
+
+# === WEB SCRAPING ===
+selenium==4.16.0
+webdriver-manager==4.0.1
+
+# === SCIENTIFIC ===
+numpy==1.24.3
+scipy==1.11.4
+pandas==2.1.4
+
+# === UTILITIES ===
+python-dotenv==1.0.0
+pyyaml==6.0.1
+tqdm==4.66.1
