@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BE Study Design AI Assistant</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧬 Система автоматизированного проектирования BE-исследований</h1>
+            <p>AI-инструмент для дизайна исследований биоэквивалентности</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Форма ввода данных -->
+            <section class="input-section">
+                <h2>Входные параметры</h2>
+                
+                <form id="studyForm">
+                    <div class="form-group">
+                        <label for="inn">МНН препарата (INN):</label>
+                        <input type="text" id="inn" name="inn" placeholder="например: ibuprofen" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dosageForm">Лекарственная форма:</label>
+                        <select id="dosageForm" name="dosageForm">
+                            <option value="tablet">Таблетки</option>
+                            <option value="capsule">Капсулы</option>
+                            <option value="solution">Раствор</option>
+                            <option value="suspension">Суспензия</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dosage">Дозировка:</label>
+                        <input type="text" id="dosage" name="dosage" placeholder="например: 200mg">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="administrationMode">Режим приёма:</label>
+                        <select id="administrationMode" name="administrationMode">
+                            <option value="fasted">Натощак</option>
+                            <option value="fed">После еды</option>
+                            <option value="both">Оба варианта</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cvintra">CVintra (если известно, %):</label>
+                        <input type="number" id="cvintra" name="cvintra" placeholder="оставьте пустым для автоопределения" min="0" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outputFormat">Формат синопсиса:</label>
+                        <select id="outputFormat" name="outputFormat">
+                            <option value="docx">Word (.docx)</option>
+                            <option value="json">JSON</option>
+                            <option value="markdown">Markdown (.md)</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" id="searchBtn" class="btn btn-secondary">
+                            🔍 Поиск данных
+                        </button>
+                        <button type="submit" id="generateBtn" class="btn btn-primary">
+                            🚀 Сгенерировать синопсис
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Результаты -->
+            <section class="results-section">
+                <h2>Результаты</h2>
+                
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Обработка... Это может занять несколько минут</p>
+                </div>
+
+                <div id="results" class="results-container" style="display: none;">
+                    <!-- Результаты поиска литературы -->
+                    <div id="literatureResults" class="result-card">
+                        <h3>📚 Данные из литературы</h3>
+                        <div id="literatureContent"></div>
+                    </div>
+
+                    <!-- PK параметры -->
+                    <div id="pkResults" class="result-card">
+                        <h3>💊 Фармакокинетические параметры</h3>
+                        <div id="pkContent"></div>
+                    </div>
+
+                    <!-- Дизайн исследования -->
+                    <div id="designResults" class="result-card">
+                        <h3>🔬 Дизайн исследования</h3>
+                        <div id="designContent"></div>
+                    </div>
+
+                    <!-- Размер выборки -->
+                    <div id="sampleSizeResults" class="result-card">
+                        <h3>📊 Расчет размера выборки</h3>
+                        <div id="sampleSizeContent"></div>
+                    </div>
+
+                    <!-- Регуляторная проверка -->
+                    <div id="regulatoryResults" class="result-card">
+                        <h3>✅ Регуляторное соответствие</h3>
+                        <div id="regulatoryContent"></div>
+                    </div>
+
+                    <!-- Кнопка скачивания -->
+                    <div id="downloadSection" style="display: none;">
+                        <button id="downloadBtn" class="btn btn-success">
+                            ⬇️ Скачать синопсис
+                        </button>
+                    </div>
+                </div>
+
+                <div id="error" class="error-message" style="display: none;"></div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2024 BE Study Design AI | Powered by HuggingFace LLMs</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
