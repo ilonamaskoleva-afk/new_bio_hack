@@ -8,7 +8,9 @@ from cv_database import get_typical_cv
 # SynopsisGenerator импортируется только при необходимости
 # from utils.synopsis_generator import SynopsisGenerator
 # Инициализация Flask приложения
-app = Flask(__name__, static_folder='../frontend', static_url_path='')
+# Отдаем статические файлы (css/js/index.html) из корня текущего проекта.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__, static_folder=BASE_DIR, static_url_path='')
 CORS(app)
 app.config.from_object(Config)
 
@@ -21,7 +23,7 @@ logger = logging.getLogger(__name__)
 def index():
     """Главная страница - отдаем HTML фронтенда"""
     try:
-        return send_file('../frontend/index.html')
+        return send_file(os.path.join(BASE_DIR, 'index.html'))
     except:
         # Если не можем найти HTML, отдаем информацию о сервере
         return jsonify({
